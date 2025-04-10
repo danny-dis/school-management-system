@@ -48,6 +48,12 @@ return [
             'path' => storage_path('logs/sms.log'),
             'level' => 'debug',
         ],
+        'api' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/api.log'),
+            'level' => 'debug',
+            'days' => 14,
+        ],
         'studentabsentlog' => [
             'driver' => 'daily',
             'path' => storage_path('logs/student-absent-job.log'),

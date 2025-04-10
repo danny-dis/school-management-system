@@ -44,6 +44,8 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
             'api.response',
+            'cors',
+            'security.headers',
         ],
         'frontend' => [
             \App\Http\Middleware\Frontend::class,
@@ -76,5 +78,10 @@ class Kernel extends HttpKernel
         'parent' => \App\Http\Middleware\ParentMiddleware::class,
         'module' => \App\Http\Middleware\ModuleEnabled::class,
         'api.response' => \App\Http\Middleware\ApiResponseMiddleware::class,
+        'api.rate.limit' => \App\Http\Middleware\ApiRateLimiter::class,
+        'api.cache' => \App\Http\Middleware\ApiCache::class,
+        'api.logger' => \App\Http\Middleware\ApiLogger::class,
+        'cors' => \App\Http\Middleware\Cors::class,
+        'security.headers' => \App\Http\Middleware\SecurityHeaders::class,
     ];
 }
