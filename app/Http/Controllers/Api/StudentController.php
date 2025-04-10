@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\BaseApiController;
 use Illuminate\Http\Request;
 use App\Registration;
 use App\Attendance;
@@ -15,10 +15,10 @@ use App\Http\Helpers\AppHelper;
 
 /**
  * StudentController
- * 
+ *
  * This controller handles the student-related API endpoints.
  */
-class StudentController extends Controller
+class StudentController extends BaseApiController
 {
     /**
      * Get student profile
@@ -29,22 +29,17 @@ class StudentController extends Controller
     public function profile(Request $request)
     {
         $user = $request->user();
-        
+
         $student = Registration::with('student', 'class', 'section', 'academic_year')
             ->where('student_id', $user->id)
             ->first();
-            
+
         if (!$student) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Student not found'
-            ], 404);
+            return $this->notFoundResponse('Student not found');
         }
 
-        return response()->json([
-            'success' => true,
-            'data' => [
-                'student' => [
+        return $this->successResponse([
+            'student' => [
                     'id' => $student->id,
                     'name' => $student->student->name,
                     'roll_no' => $student->roll_no,
@@ -78,7 +73,7 @@ class StudentController extends Controller
     public function attendance(Request $request)
     {
         $user = $request->user();
-        
+
         $student = Registration::where('student_id', $user->id)->first();
         if (!$student) {
             return response()->json([
@@ -86,16 +81,16 @@ class StudentController extends Controller
                 'message' => 'Student not found'
             ], 404);
         }
-        
+
         $month = $request->month ? date('m', strtotime($request->month)) : date('m');
         $year = $request->year ? $request->year : date('Y');
-        
+
         $attendances = Attendance::where('registration_id', $student->id)
             ->whereMonth('attendance_date', $month)
             ->whereYear('attendance_date', $year)
             ->orderBy('attendance_date', 'asc')
             ->get();
-            
+
         $attendanceData = [];
         foreach ($attendances as $attendance) {
             $attendanceData[] = [
@@ -104,7 +99,7 @@ class StudentController extends Controller
                 'remarks' => $attendance->remark
             ];
         }
-        
+
         // Calculate statistics
         $totalDays = count($attendanceData);
         $presentDays = $attendances->where('present', 1)->count();
@@ -134,7 +129,7 @@ class StudentController extends Controller
     public function subjects(Request $request)
     {
         $user = $request->user();
-        
+
         $student = Registration::where('student_id', $user->id)->first();
         if (!$student) {
             return response()->json([
@@ -142,7 +137,7 @@ class StudentController extends Controller
                 'message' => 'Student not found'
             ], 404);
         }
-        
+
         $subjects = Subject::where('class_id', $student->class_id)
             ->with('teacher')
             ->get()
@@ -175,7 +170,7 @@ class StudentController extends Controller
     public function results(Request $request)
     {
         $user = $request->user();
-        
+
         $student = Registration::where('student_id', $user->id)->first();
         if (!$student) {
             return response()->json([
@@ -183,22 +178,22 @@ class StudentController extends Controller
                 'message' => 'Student not found'
             ], 404);
         }
-        
+
         $exams = Exam::where('class_id', $student->class_id)
             ->orWhere('class_id', 0)
             ->get();
-            
+
         $examResults = [];
         foreach ($exams as $exam) {
             $marks = Mark::where('registration_id', $student->id)
                 ->where('exam_id', $exam->id)
                 ->with('subject')
                 ->get();
-                
+
             $subjectMarks = [];
             $totalMarks = 0;
             $totalFullMarks = 0;
-            
+
             foreach ($marks as $mark) {
                 $subjectMarks[] = [
                     'subject' => $mark->subject->name,
@@ -209,13 +204,13 @@ class StudentController extends Controller
                     'point' => $mark->point,
                     'is_pass' => $mark->marks >= $mark->subject->pass_mark
                 ];
-                
+
                 $totalMarks += $mark->marks;
                 $totalFullMarks += $mark->subject->full_mark;
             }
-            
+
             $percentage = $totalFullMarks > 0 ? round(($totalMarks / $totalFullMarks) * 100, 2) : 0;
-            
+
             $examResults[] = [
                 'exam_id' => $exam->id,
                 'exam_name' => $exam->name,
@@ -243,7 +238,7 @@ class StudentController extends Controller
     public function fees(Request $request)
     {
         $user = $request->user();
-        
+
         $student = Registration::where('student_id', $user->id)->first();
         if (!$student) {
             return response()->json([
@@ -251,7 +246,7 @@ class StudentController extends Controller
                 'message' => 'Student not found'
             ], 404);
         }
-        
+
         $invoices = FeeInvoice::where('student_id', $student->id)
             ->with('feeType', 'payments')
             ->orderBy('issue_date', 'desc')
@@ -299,7 +294,7 @@ class StudentController extends Controller
     public function books(Request $request)
     {
         $user = $request->user();
-        
+
         $student = Registration::where('student_id', $user->id)->first();
         if (!$student) {
             return response()->json([
@@ -307,7 +302,7 @@ class StudentController extends Controller
                 'message' => 'Student not found'
             ], 404);
         }
-        
+
         $issues = BookIssue::where('student_id', $student->id)
             ->with('book.category')
             ->orderBy('issue_date', 'desc')

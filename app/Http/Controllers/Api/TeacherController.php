@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\BaseApiController;
 use Illuminate\Http\Request;
 use App\Employee;
 use App\Subject;
@@ -17,10 +17,10 @@ use Carbon\Carbon;
 
 /**
  * TeacherController
- * 
+ *
  * This controller handles the teacher-related API endpoints.
  */
-class TeacherController extends Controller
+class TeacherController extends BaseApiController
 {
     /**
      * Get teacher profile
@@ -31,22 +31,17 @@ class TeacherController extends Controller
     public function profile(Request $request)
     {
         $user = $request->user();
-        
+
         $teacher = Employee::with('role')
             ->where('id', $user->id)
             ->first();
-            
+
         if (!$teacher) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Teacher not found'
-            ], 404);
+            return $this->notFoundResponse('Teacher not found');
         }
 
-        return response()->json([
-            'success' => true,
-            'data' => [
-                'teacher' => [
+        return $this->successResponse([
+            'teacher' => [
                     'id' => $teacher->id,
                     'name' => $teacher->name,
                     'designation' => $teacher->designation,
@@ -75,7 +70,7 @@ class TeacherController extends Controller
     public function subjects(Request $request)
     {
         $user = $request->user();
-        
+
         $subjects = Subject::where('teacher_id', $user->id)
             ->with('class')
             ->get()
@@ -108,12 +103,12 @@ class TeacherController extends Controller
     public function classes(Request $request)
     {
         $user = $request->user();
-        
+
         // Get classes where teacher teaches at least one subject
         $classIds = Subject::where('teacher_id', $user->id)
             ->pluck('class_id')
             ->unique();
-            
+
         $classes = IClass::whereIn('id', $classIds)
             ->with('sections')
             ->get()
@@ -163,7 +158,7 @@ class TeacherController extends Controller
                 'errors' => $validator->errors()
             ], 422);
         }
-        
+
         $students = Registration::where('class_id', $request->class_id)
             ->where('section_id', $request->section_id)
             ->where('status', AppHelper::ACTIVE)
@@ -211,9 +206,9 @@ class TeacherController extends Controller
                 'errors' => $validator->errors()
             ], 422);
         }
-        
+
         $date = Carbon::parse($request->date);
-        
+
         $students = Registration::where('class_id', $request->class_id)
             ->where('section_id', $request->section_id)
             ->where('status', AppHelper::ACTIVE)
@@ -224,7 +219,7 @@ class TeacherController extends Controller
             ->get()
             ->map(function ($registration) {
                 $attendance = $registration->attendances->first();
-                
+
                 return [
                     'id' => $registration->id,
                     'name' => $registration->student->name,
@@ -271,9 +266,9 @@ class TeacherController extends Controller
                 'errors' => $validator->errors()
             ], 422);
         }
-        
+
         $date = Carbon::parse($request->date);
-        
+
         foreach ($request->attendances as $attendanceData) {
             $attendance = Attendance::updateOrCreate(
                 [
@@ -312,7 +307,7 @@ class TeacherController extends Controller
                 'errors' => $validator->errors()
             ], 422);
         }
-        
+
         $exams = Exam::where(function ($query) use ($request) {
                 $query->where('class_id', $request->class_id)
                     ->orWhere('class_id', 0);
@@ -359,21 +354,21 @@ class TeacherController extends Controller
                 'errors' => $validator->errors()
             ], 422);
         }
-        
+
         $user = $request->user();
-        
+
         // Check if subject belongs to teacher
         $subject = Subject::where('id', $request->subject_id)
             ->where('teacher_id', $user->id)
             ->first();
-            
+
         if (!$subject) {
             return response()->json([
                 'success' => false,
                 'message' => 'You are not authorized to enter marks for this subject'
             ], 403);
         }
-        
+
         $students = Registration::where('class_id', $request->class_id)
             ->where('section_id', $request->section_id)
             ->where('status', AppHelper::ACTIVE)
@@ -385,7 +380,7 @@ class TeacherController extends Controller
             ->get()
             ->map(function ($registration) use ($subject) {
                 $mark = $registration->marks->first();
-                
+
                 return [
                     'id' => $registration->id,
                     'name' => $registration->student->name,
@@ -436,31 +431,31 @@ class TeacherController extends Controller
                 'errors' => $validator->errors()
             ], 422);
         }
-        
+
         $user = $request->user();
-        
+
         // Check if subject belongs to teacher
         $subject = Subject::where('id', $request->subject_id)
             ->where('teacher_id', $user->id)
             ->first();
-            
+
         if (!$subject) {
             return response()->json([
                 'success' => false,
                 'message' => 'You are not authorized to enter marks for this subject'
             ], 403);
         }
-        
+
         // Get grade system
         $exam = Exam::find($request->exam_id);
         $gradeSystem = $exam->grade_system;
-        
+
         foreach ($request->marks as $markData) {
             // Calculate grade and point
             $marks = $markData['marks'];
             $grade = '';
             $point = 0;
-            
+
             if ($gradeSystem) {
                 foreach ($gradeSystem->rules as $rule) {
                     if ($marks >= $rule->marks_from && $marks <= $rule->marks_to) {
@@ -470,7 +465,7 @@ class TeacherController extends Controller
                     }
                 }
             }
-            
+
             $mark = Mark::updateOrCreate(
                 [
                     'registration_id' => $markData['student_id'],
