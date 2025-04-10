@@ -371,15 +371,6 @@ Don't be shy to make some PR's here :smile:
 - [ ] Add new UI theme version **AdminLTE**
 - [ ] Update Jquery with datetime picker library
 
-#### Contributers
-
-A big shout out to all the contributers, more specifically to these guys
-
-- [H.R. Shadhin](https://github.com/hrshadhin)
-- [Ashutosh Das](https://github.com/pyprism)
-- [order4adwriter](https://github.com/order4adwriter)
-- [Zahid Irfan](https://github.com/zahidirfan)
-- [Oshane Bailey](https://github.com/b4oshany)
 
 ## Issues
 
