@@ -7,12 +7,12 @@
 [![tailwind](https://img.shields.io/badge/tailwind-3.x-blue.svg?logo=tailwindcss)](https://tailwindcss.com)
 
 ```
-                     _____              _     _ _      
-                    |__  /___  _ __ ___| |__ | (_) ___ 
+                     _____              _     _ _
+                    |__  /___  _ __ ___| |__ | (_) ___
                       / // _ \| '_ \___| '_ \| | |/ __|
-                     / /| (_) | |_) |  | | | | | | (__ 
+                     / /| (_) | |_) |  | | | | | | (__
                     /____\___/| .__/   |_| |_|_|_|\___|
-                             |_|                      
+                             |_|
 ```
 
 A comprehensive, enterprise-grade School Management System built with Laravel 10 and Vue 3
