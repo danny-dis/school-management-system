@@ -1,31 +1,30 @@
-## CloudSchool
+## Zophlic School Management System
 
-[![Codeship Status for hrshadhin/school-management-system](https://app.codeship.com/projects/09010350-b97f-0136-1477-5a7589b245e6/status?branch=master)](https://app.codeship.com/projects/312233)
 [![license](https://img.shields.io/badge/license-AGPL-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
-[![php](https://img.shields.io/badge/php-7.2-brightgreen.svg?logo=php)](https://www.php.net)
-[![laravel](https://img.shields.io/badge/laravel-6.x-orange.svg?logo=laravel)](https://laravel.com)
+[![php](https://img.shields.io/badge/php-8.1-brightgreen.svg?logo=php)](https://www.php.net)
+[![laravel](https://img.shields.io/badge/laravel-10.x-orange.svg?logo=laravel)](https://laravel.com)
+[![vue](https://img.shields.io/badge/vue-3.x-green.svg?logo=vue.js)](https://vuejs.org)
+[![tailwind](https://img.shields.io/badge/tailwind-3.x-blue.svg?logo=tailwindcss)](https://tailwindcss.com)
 
 ```
-                       _____  _                    _   _____        _                    _
-                      / ____|| |                  | | / ____|      | |                  | |
-                     | |     | |  ___   _   _   __| || (___    ___ | |__    ___    ___  | |
-                     | |     | | / _ \ | | | | / _` | \___ \  / __|| '_ \  / _ \  / _ \ | |
-                     | |____ | || (_) || |_| || (_| | ____) || (__ | | | || (_) || (_) || |
-                      \_____||_| \___/  \__,_| \__,_||_____/  \___||_| |_| \___/  \___/ |_|
+                     _____              _     _ _      
+                    |__  /___  _ __ ___| |__ | (_) ___ 
+                      / // _ \| '_ \___| '_ \| | |/ __|
+                     / /| (_) | |_) |  | | | | | | (__ 
+                    /____\___/| .__/   |_| |_|_|_|\___|
+                             |_|                      
 ```
 
-A comprehensive, modular School Management System built with Laravel and PHP 7
+A comprehensive, enterprise-grade School Management System built with Laravel 10 and Vue 3
 
 ## Index
 
-- [Have a Query?](#have-a-query)
-- [Demo](#demo)
-  - [Enterprise Edition (EE)](#enterprise-edition)
 - [Features](#features)
 - [Installation](#installation)
   - [Installing dependencies](#installing-dependencies)
   - [Download and setup](#download-and-setup)
   - [Use the app](#use-the-app)
+- [Module Management](#module-management)
 - [Documentation](#documentation)
 - [Changelog/Timeline](#timeline)
 - [Screenshot](#screenshot)
@@ -41,7 +40,16 @@ A comprehensive, modular School Management System built with Laravel and PHP 7
 
 This enhanced version by Zophlic includes several improvements over the original project:
 
-1. **Additional Modules**: We've added several enterprise-grade modules including:
+1. **Modern Architecture**: We've modernized the codebase with:
+   - RESTful API backend with Laravel 10
+   - Single Page Application (SPA) frontend with Vue 3
+   - Repository pattern for data access
+   - Service layer for business logic
+   - Form request validation
+   - API resources for consistent responses
+   - JWT authentication
+
+2. **Additional Modules**: We've added several enterprise-grade modules including:
    - Online Learning
    - Fee Management
    - Library Management
@@ -52,31 +60,31 @@ This enhanced version by Zophlic includes several improvements over the original
    - Transportation Management
    - Health Records Management
 
-2. **Enhanced User Experience**:
+3. **Enhanced User Experience**:
    - Improved UI/UX design
    - More intuitive navigation
    - Responsive design for all devices
    - Dark mode support
 
-3. **Performance Optimizations**:
+4. **Performance Optimizations**:
    - Improved database queries
    - Caching mechanisms
    - Reduced load times
    - Better resource utilization
 
-4. **Security Enhancements**:
+5. **Security Enhancements**:
    - Advanced permission system
    - Improved data validation
    - Enhanced encryption
    - Regular security updates
 
-5. **Comprehensive Documentation**:
+6. **Comprehensive Documentation**:
    - Detailed user guides
    - API documentation
    - Developer documentation
    - Video tutorials
 
-6. **Licensing System**:
+7. **Licensing System**:
    - Module-based licensing
    - Subscription management
    - License validation
@@ -129,193 +137,121 @@ The system features a modular architecture that allows you to enable or disable 
 - Online Classes
 - Learning Resources
 
-#### Employees Management Module
-- Comprehensive Employee Management
-- Work Outside Tracking
-- Leave Management
-- Performance Monitoring
-
-#### SMS and Email Module
-- SMS Gateway Setup
-- Email & SMS Templating
-- Attendance Notifications
-- Custom Notification Templates
-
-#### ID Card Management Module
-- ID Card Templates
-- Employee & Student ID Card Printing
-- Bulk/Mass ID Card Printing
-
-#### Online Admission Module
-- Online Student Applications
-- Application Processing
-- Admission Status Tracking
-
-#### Online Documents Module
-- Online Admit Cards
-- Online Payslips
-- Document Management
-
-#### Notice Board Module
-- School Announcements
-- Important Notifications
-- Event Announcements
-
-#### Accounting Module
-- Account Management
-- Budget Management
-- Account Heads
-- Income/Expense Tracking
-
-#### Student Billing Module
-- Student Invoice Generation
-- Fee Management
+#### Fee Management Module
+- Fee Type Management
+- Invoice Generation
 - Payment Tracking
+- Fee Reports
 
-#### Payroll Module
-- Salary Templates
-- Employee Salary Payment
-- Payroll Processing
-
-#### Hostel Management Module
-- Hostel Administration
-- Room Allocation
-- Collection Management
-
-#### Library Management Module
-- Book Inventory
-- Book Issuing
-- Fine Collection
+#### Library Module
+- Book Inventory Management
+- Book Issuing and Returns
+- Fine Management
 - Library Reports
 
-#### Academic Calendar Module
-- Calendar Management
-- Event Scheduling
-- Calendar Printing
-
-#### Bulk Communication Module
-- Bulk SMS Sending
-- Bulk Email Sending
-- Targeted Communications
+#### Mobile App Integration Module
+- Student Mobile App
+- Parent Mobile App
+- Teacher Mobile App
+- Admin Mobile App
 
 #### Advanced Reporting Module
-- Enhanced Reports
+- Custom Report Builder
 - Data Visualization
-- Custom Report Generation
+- Export to Multiple Formats
+- Scheduled Reports
 
-#### Website Management Module
-- Dynamic Front Website
-- Content Management
-- Website Administration
+#### Communication Module
+- Internal Messaging
+- Email Notifications
+- SMS Notifications
+- Announcement System
 
-#### Photo Gallery Module
-- School Photo Management
-- Gallery Organization
-- Image Uploads
+#### Timetable Module
+- Class Schedule Management
+- Teacher Schedule
+- Room Allocation
+- Conflict Detection
 
-#### Event Management Module
-- School Event Planning
-- Event Calendar
-- Event Notifications
+#### Transportation Module
+- Vehicle Management
+- Route Management
+- Student Transport Assignment
+- Transport Fee Integration
 
-#### Analytics Module
-- Google Analytics Integration
-- Website Traffic Analysis
-- User Behavior Tracking
+#### Health Records Module
+- Student Health Profiles
+- Medical Visit Records
+- Vaccination Records
+- Allergy Management
 
 ## Installation
 
 [:arrow_up: Back to top](#index)
 
-#### Installing dependencies
+### Installing dependencies
 
-- PHP >= 7.2
-- OpenSSL PHP Extension
-- PDO PHP Extension
-- Mbstring PHP Extension
-- Tokenizer PHP Extension
-- XML PHP Extension
-- Ctype PHP Extension
-- JSON PHP Extension
-- MySQL >= 5.6 `OR` MariaDB >= 10.1
-- [hrshadhin/laravel-userstamps](https://github.com/hrshadhin/laravel-userstamps.git) [**Already Installed**]
-- NodeJS, npm, webpack
+#### Server Requirements
+- PHP >= 8.1
+- MySQL >= 8.0 or MariaDB >= 10.3
+- Composer
+- Node.js >= 16.0
+- NPM >= 8.0
 
-#### Download and setup
+#### PHP Extensions
+- OpenSSL
+- PDO
+- Mbstring
+- Tokenizer
+- XML
+- Ctype
+- JSON
+- BCMath
+- Fileinfo
+- GD
+- Zip
 
-- Clone the repo
+### Download and setup
 
-  **For Windows run below commands before cloning the Repo.**
+```bash
+# Clone the repository
+git clone https://github.com/zophlic/school-management-system.git
 
-  ```
-  git config --global core.eol lf
-  git config --global core.autocrlf false
-  ```
+# Change directory
+cd school-management-system
 
-  ```
-  $ git clone https://github.com/danny-dis/school-management-system.git school-system
-  ```
+# Install PHP dependencies
+composer install
 
-- change directory
-  ```
-  $ cd school-system
-  ```
-- Copy sample `env` file and change configuration according to your need in ".env" file and create Database
-  ```
-  $ cp .env.example .env
-  ```
-- Install php libraries
-  ```
-  $ composer install
-  ```
-- Setup application
+# Install JavaScript dependencies
+npm install
 
-  - Method 1: By one command
+# Build assets
+npm run build
 
-    ```
-    # setup system with out demo data
-    $ php artisan fresh-install
+# Create a copy of the .env file
+cp .env.example .env
 
-    # setup system with demo data
-    $ php artisan fresh-install --with-data
-     # OR
-    $ php artisan fresh-install -d
-    ```
+# Generate application key
+php artisan key:generate
 
-  - Method 2: Step by step
+# Configure your database in .env file
+# DB_CONNECTION=mysql
+# DB_HOST=127.0.0.1
+# DB_PORT=3306
+# DB_DATABASE=your_database_name
+# DB_USERNAME=your_database_username
+# DB_PASSWORD=your_database_password
 
-    ```
-    $ php artisan storage:link
-    $ php artisan key:generate --ansi
+# Run database migrations and seed the database
+php artisan migrate --seed
 
-    # Create database tables and load essential data
-    $ php artisan migrate
-    $ php artisan db:seed
+# Create symbolic link for storage
+php artisan storage:link
 
-    # Load module permissions
-    $ php artisan db:seed --class ModulePermissionSeeder
-
-    # Load demo data
-    $ php artisan db:seed --class DemoSiteDataSeeder
-    $ php artisan db:seed --class DemoAppDataSeeder
-
-    # Clear all caches
-    $ php artisan view:clear
-    $ php artisan route:clear
-    $ php artisan config:clear
-    $ php artisan cache:clear
-    ```
-
-- Install frontend(css,js) dependency libraries and bundle them
-  ```
-  $ npm install
-  $ npm run backend-prod
-  $ npm run frontend-prod
-  ```
-- Start development server
-  ```
-  $ php artisan serve
-  ```
+# Start the development server
+php artisan serve
+```
 
 #### Use the app
 
@@ -326,91 +262,120 @@ The system features a modular architecture that allows you to enable or disable 
 
   | Username   | Password |
   | ---------- | :------- |
-  | superadmin | super99  |
-  | admin      | demo123  |
+  | admin      | admin123 |
 
 ### Module Management
 
+[:arrow_up: Back to top](#index)
+
 To enable or disable modules:
-1. Login as superadmin
+1. Login as admin
 2. Go to Module Management from the sidebar
 3. Enable or disable modules as needed
 
 Note: Some modules have dependencies on other modules. You cannot enable a module if its dependencies are not enabled, and you cannot disable a module if other enabled modules depend on it.
 
+## API Documentation
+
+[:arrow_up: Back to top](#index)
+
+The system provides a comprehensive RESTful API for integration with other systems or for building custom frontends. The API is built using Laravel's API resources and follows RESTful conventions.
+
+### Authentication
+
+The API uses JWT (JSON Web Tokens) for authentication. To authenticate, send a POST request to `/api/login` with your credentials:
+
+```json
+{
+  "username": "your_username",
+  "password": "your_password"
+}
+```
+
+The response will include a token that should be included in the Authorization header of subsequent requests:
+
+```
+Authorization: Bearer your_token_here
+```
+
+### Available Endpoints
+
+#### Students
+- `GET /api/students` - Get all students
+- `GET /api/students/{id}` - Get a specific student
+- `POST /api/students` - Create a new student
+- `PUT /api/students/{id}` - Update a student
+- `DELETE /api/students/{id}` - Delete a student
+
+#### Teachers
+- `GET /api/teachers` - Get all teachers
+- `GET /api/teachers/{id}` - Get a specific teacher
+- `POST /api/teachers` - Create a new teacher
+- `PUT /api/teachers/{id}` - Update a teacher
+- `DELETE /api/teachers/{id}` - Delete a teacher
+
+#### Classes
+- `GET /api/classes` - Get all classes
+- `GET /api/classes/{id}` - Get a specific class
+- `POST /api/classes` - Create a new class
+- `PUT /api/classes/{id}` - Update a class
+- `DELETE /api/classes/{id}` - Delete a class
+
+For a complete list of endpoints and detailed documentation, visit the API documentation at `/api/documentation` after installation.
+
 ## Documentation
 
 [:arrow_up: Back to top](#index)
 
-- Comprehensive documentation is available in the `/docs` directory
-- User guides for each module are provided
-- API documentation for developers
-- Installation and configuration guides
+Comprehensive documentation is available in the `docs` directory. This includes:
+
+- User Guide
+- Administrator Guide
+- Developer Guide
+- API Documentation
 
 ## Timeline
 
-- [Check Here](CHANGELOG.md)
+[:arrow_up: Back to top](#index)
+
+See [CHANGELOG.md](CHANGELOG.md) for a detailed timeline of changes.
 
 ## Screenshot
 
 [:arrow_up: Back to top](#index)
 
-- ![Dashboard](../assets/screenshots/ce/dashboard.png?raw=true)
-- **[More...](../assets/screenshots/ce/showme.md)**
+![Dashboard](screenshots/dashboard.png)
 
 ## Contributing
 
 [:arrow_up: Back to top](#index)
 
-Don't be shy to make some PR's here :smile:
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-#### To-do
+### To-do
 
-- [ ] Add **unit & integration**. Like real quick!
-- [ ] Add shortcut link for create things. i.e: `student`, `attendance`, `marks` etc
-- [ ] Add new UI theme version **AdminLTE**
-- [ ] Update Jquery with datetime picker library
+[:arrow_up: Back to top](#index)
 
-#### Contributers
+- [ ] Implement more advanced reporting features
+- [ ] Add more payment gateways
+- [ ] Improve mobile app integration
+- [ ] Add more language options
+- [ ] Implement AI-based features
 
-A big shout out to all the contributers, more specifically to these guys
+### Contributers
 
-- [H.R. Shadhin](https://github.com/hrshadhin)
-- [Ashutosh Das](https://github.com/pyprism)
-- [order4adwriter](https://github.com/order4adwriter)
-- [Zahid Irfan](https://github.com/zahidirfan)
-- [Oshane Bailey](https://github.com/b4oshany)
+[:arrow_up: Back to top](#index)
+
+- [Zophlic Team](https://github.com/zophlic)
 
 ## Issues
 
 [:arrow_up: Back to top](#index)
 
-- If you faced any problems, first check previous issue list. If doesn't exists then create a new one.
-- You can report the bugs at the [issue tracker](https://github.com/hrshadhin/school-management-system/issues)
-- If you discover a security vulnerability within CloudSchool app, please send an e-mail to [sos@cloudschoolbd.com](mailto:sos@cloudschoolbd.com). All security vulnerabilities will be promptly addressed.
+If you discover any issues, please report them [here](https://github.com/zophlic/school-management-system/issues).
 
 ## License
 
 [:arrow_up: Back to top](#index)
 
-Copyright (c) the respective developers and maintainers, as shown by the AUTHORS file.
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU Affero General Public License as published
-by the Free Software Foundation, either version 3 of the License, or any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU Affero General Public License for more details.
-
-You should have received a copy of the GNU Affero General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-All Frameworks and libraries are distributed with it's own license.
-
-**As it is a free(free as in freedom) software. To keep the credit for this works, you should
-not remove application footer information text**
-
-**Why AGPL? [Read Here](https://www.gnu.org/licenses/why-affero-gpl.html)**
-
+This project is licensed under the AGPL License - see the [LICENSE](LICENSE) file for details.

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -53,134 +54,43 @@ class CreateModulesTable extends Migration
      */
     private function seedDefaultModules()
     {
-        $modules = [
-            [
-                'module_key' => 'student_portal',
-                'status' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'module_key' => 'parent_portal',
-                'status' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'module_key' => 'online_learning',
-                'status' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'module_key' => 'employees_management',
-                'status' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'module_key' => 'sms_email',
-                'status' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'module_key' => 'id_card',
-                'status' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'module_key' => 'online_admission',
-                'status' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'module_key' => 'online_documents',
-                'status' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'module_key' => 'notice_board',
-                'status' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'module_key' => 'accounting',
-                'status' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'module_key' => 'student_billing',
-                'status' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'module_key' => 'payroll',
-                'status' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'module_key' => 'hostel',
-                'status' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'module_key' => 'library',
-                'status' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'module_key' => 'academic_calendar',
-                'status' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'module_key' => 'bulk_communication',
-                'status' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'module_key' => 'advanced_reporting',
-                'status' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'module_key' => 'website_management',
-                'status' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'module_key' => 'photo_gallery',
-                'status' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'module_key' => 'event_management',
-                'status' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'module_key' => 'analytics',
-                'status' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+        $modules = [];
+        $now = now();
+
+        // Get all available modules from config
+        $availableModules = config('modules.available');
+        $defaultEnabled = config('modules.default_enabled', []);
+
+        foreach ($availableModules as $key => $module) {
+            $modules[] = [
+                'module_key' => $key,
+                'status' => in_array($key, $defaultEnabled),
+                'created_at' => $now,
+                'updated_at' => $now,
+            ];
+        }
+
+        // Add core modules that are always enabled
+        $coreModules = [
+            'student_portal' => true,
+            'parent_portal' => true,
+            'employees_management' => true,
+            'notice_board' => true,
+            'academic_calendar' => true,
+            'website_management' => true,
         ];
+
+        foreach ($coreModules as $key => $status) {
+            // Only add if not already in the modules array
+            if (!array_key_exists($key, $availableModules)) {
+                $modules[] = [
+                    'module_key' => $key,
+                    'status' => $status,
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ];
+            }
+        }
 
         DB::table('modules')->insert($modules);
     }

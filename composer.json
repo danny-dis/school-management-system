@@ -1,7 +1,7 @@
 {
-    "name": "hrshadhin/school-management-system",
-    "version": "3.0.0",
-    "description": "Another School Management System build with laravel",
+    "name": "zophlic/school-management-system",
+    "version": "4.0.0",
+    "description": "Modern School Management System built with Laravel",
     "keywords": [
         "School",
         "CloudSchool",
@@ -29,14 +29,14 @@
             "role": "Maintainer"
         }
     ],
-    "homepage": "http://cloudschoolbd.com",
+    "homepage": "https://zophlic.com",
     "readme": "./readme.md",
-    "time": "2016-02-14",
+    "time": "2024-05-01",
     "support": {
-        "email": "sos@cloudschoolbd.com",
-        "issues": "https://github.com/hrshadhin/school-management-system/issues",
-        "wiki": "https://github.com/hrshadhin/school-management-system/wiki",
-        "source": "https://github.com/hrshadhin/school-management-system"
+        "email": "support@zophlic.com",
+        "issues": "https://github.com/danny-dis/school-management-system/issues",
+        "wiki": "https://github.com/danny-dis/school-management-system/wiki",
+        "source": "https://github.com/danny-dis/school-management-system"
     },
     "repositories": [
         {
@@ -45,27 +45,32 @@
         }
     ],
     "require": {
-        "php": "^7.2",
-        "barryvdh/laravel-dompdf": "^0.8.4",
-        "bonecms/laravel-captcha": "^2.1",
-        "fideloper/proxy": "^4.0",
-        "guzzlehttp/guzzle": "^6.3",
+        "php": "^8.1",
+        "barryvdh/laravel-dompdf": "^2.0",
+        "bonecms/laravel-captcha": "^2.2",
+        "guzzlehttp/guzzle": "^7.5",
         "hrshadhin/laravel-userstamps": "^2.0.1",
-        "laravel/framework": "^6.0",
-        "laravel/tinker": "^2.0",
-        "laravelcollective/html": "^6.0",
+        "laravel/framework": "^10.0",
+        "laravel/sanctum": "^3.2",
+        "laravel/tinker": "^2.8",
+        "laravelcollective/html": "^6.4",
         "maatwebsite/excel": "^3.1",
-        "picqer/php-barcode-generator": "^0.3.0",
-        "rap2hpoutre/laravel-log-viewer": "^1.2",
-        "twilio/sdk": "^6.0"
+        "picqer/php-barcode-generator": "^2.0",
+        "rap2hpoutre/laravel-log-viewer": "^2.3",
+        "twilio/sdk": "^7.0",
+        "predis/predis": "^2.0",
+        "spatie/laravel-permission": "^5.10"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.2",
-        "facade/ignition": "^1.4",
-        "fzaninotto/faker": "^1.9.1",
-        "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^3.0",
-        "phpunit/phpunit": "^8.0"
+        "barryvdh/laravel-debugbar": "^3.8",
+        "fakerphp/faker": "^1.21",
+        "laravel/dusk": "^7.9",
+        "laravel/pint": "^1.10",
+        "laravel/sail": "^1.23",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^7.0",
+        "phpunit/phpunit": "^10.0",
+        "spatie/laravel-ignition": "^2.0"
     },
     "config": {
         "preferred-install": "dist",
@@ -79,7 +84,7 @@
     },
     "autoload": {
         "classmap": [
-            "database/seeds",
+            "database/seeders",
             "database/factories"
         ],
         "psr-4": {

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Helpers\AppHelper;
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +12,11 @@ use App\Http\Helpers\AppHelper;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// API Documentation
+Route::get('/api/documentation', function () {
+    return file_get_contents(public_path('api-docs.html'));
+});
 
 /**
  * Admin panel routes goes below
@@ -38,6 +44,27 @@ Route::group(
     Route::get('/logout', 'UserController@logout')->name('logout');
     Route::get('/lock', 'UserController@lock')->name('lockscreen');
     Route::get('/dashboard', 'UserController@dashboard')->name('user.dashboard');
+
+    //notifications
+    Route::get('/notifications', 'NotificationController@index')->name('notifications.index');
+    Route::post('/notifications/{id}/mark-read', 'NotificationController@markAsRead')->name('notifications.mark-read');
+    Route::post('/notifications/mark-all-read', 'NotificationController@markAllAsRead')->name('notifications.mark-all-read');
+    Route::delete('/notifications/{id}', 'NotificationController@destroy')->name('notifications.destroy');
+    Route::delete('/notifications', 'NotificationController@destroyAll')->name('notifications.destroy-all');
+    Route::get('/notifications/unread', 'NotificationController@getUnreadNotifications')->name('notifications.unread');
+
+    //license management
+    Route::group(['prefix' => 'admin', 'namespace' => '\App\Http\Controllers\Admin', 'middleware' => ['role:Super Admin']], function () {
+        Route::get('/license', 'LicenseController@index')->name('admin.license.index');
+        Route::post('/license/validate', 'LicenseController@validateLicense')->name('admin.license.validate');
+        Route::post('/license/clear-cache', 'LicenseController@clearCache')->name('admin.license.clear-cache');
+
+        // Module management
+        Route::get('/modules', 'ModuleController@index')->name('admin.modules.index');
+        Route::post('/modules/{id}/enable', 'ModuleController@enable')->name('admin.modules.enable');
+        Route::post('/modules/{id}/disable', 'ModuleController@disable')->name('admin.modules.disable');
+        Route::post('/modules/refresh-cache', 'ModuleController@refreshCache')->name('admin.modules.refresh-cache');
+    });
 
     //user management
     Route::resource('user', 'UserController');

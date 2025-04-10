@@ -427,6 +427,13 @@
                             </a>
                         </li>
                    @endcan
+                   @role('Super Admin')
+                        <li>
+                            <a href="{{ URL::route('admin.license.index') }}">
+                                <i class="fa fa-key"></i> <span>License Management</span>
+                            </a>
+                        </li>
+                   @endrole
                    @can('settings.report')
                        <li>
                            <a href="{{ URL::route('settings.report') }}">

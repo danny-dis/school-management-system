@@ -161,11 +161,15 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
         App\Providers\PermissionsServiceProvider::class,
+        App\Providers\ModuleServiceProvider::class,
+        App\Providers\ServiceServiceProvider::class,
+        App\Providers\ApiServiceProvider::class,
         // Hrshadhin\Userstamps\UserstampsServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
-
+        Laravel\Sanctum\SanctumServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
 
     ],
@@ -188,6 +192,7 @@ return [
         'Auth' => Illuminate\Support\Facades\Auth::class,
         'Blade' => Illuminate\Support\Facades\Blade::class,
         'Broadcast' => Illuminate\Support\Facades\Broadcast::class,
+        'ModuleManager' => App\Facades\ModuleManager::class,
         'Bus' => Illuminate\Support\Facades\Bus::class,
         'Cache' => Illuminate\Support\Facades\Cache::class,
         'Config' => Illuminate\Support\Facades\Config::class,

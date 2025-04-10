@@ -35,17 +35,18 @@
          <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-bell-o"></i>
-                <span class="label label-warning"><lable class="alert-image notification_badge">0</lable></span> </a>
+                <span class="label label-warning"><span id="notification-badge">0</span></span>
+            </a>
             <ul class="dropdown-menu">
-                <li class="header notificaton_header">You have 0 recent notifications</li>
+                <li class="header" id="notification-header">You have 0 recent notifications</li>
                 <li>
-                <ul class="menu notification_top">
-                </ul>
-                      
+                    <ul class="menu" id="notification-list">
+                        <!-- Notifications will be loaded here via JavaScript -->
+                    </ul>
                 </li>
-                <li class="footer"><a href="{{route('user.notification_unread')}}">See All Notifications</a></li>
+                <li class="footer"><a href="{{ route('notifications.index') }}">See All Notifications</a></li>
             </ul>
-        </li>                                                  
+        </li>
           @if($show_language)
         <li class="dropdown lang-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -110,7 +111,7 @@
             </div>
         </li>
     </ul>
-</li>         
+</li>
           <!-- Control Sidebar Toggle Button -->
           <li>
             <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>

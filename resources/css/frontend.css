@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Frontend specific styles */
+@layer components {
+    .hero-section {
+        @apply relative bg-primary-700 text-white py-20;
+    }
+    
+    .hero-content {
+        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center;
+    }
+    
+    .hero-title {
+        @apply text-4xl md:text-5xl font-bold mb-4;
+    }
+    
+    .hero-subtitle {
+        @apply text-xl md:text-2xl mb-8 max-w-3xl;
+    }
+    
+    .hero-button {
+        @apply bg-white text-primary-700 hover:bg-gray-100 font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300;
+    }
+    
+    .feature-card {
+        @apply bg-white rounded-lg shadow-md p-6 transition duration-300 hover:shadow-lg;
+    }
+    
+    .feature-icon {
+        @apply text-primary-600 text-3xl mb-4;
+    }
+    
+    .feature-title {
+        @apply text-xl font-semibold mb-2;
+    }
+    
+    .feature-description {
+        @apply text-gray-600;
+    }
+    
+    .section-title {
+        @apply text-3xl font-bold text-center mb-12;
+    }
+    
+    .section-subtitle {
+        @apply text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto;
+    }
+    
+    .testimonial-card {
+        @apply bg-white rounded-lg shadow-md p-6;
+    }
+    
+    .testimonial-content {
+        @apply text-gray-700 italic mb-4;
+    }
+    
+    .testimonial-author {
+        @apply font-semibold;
+    }
+    
+    .testimonial-role {
+        @apply text-gray-600 text-sm;
+    }
+    
+    .footer {
+        @apply bg-gray-800 text-white py-12;
+    }
+    
+    .footer-title {
+        @apply text-lg font-semibold mb-4;
+    }
+    
+    .footer-link {
+        @apply text-gray-300 hover:text-white transition duration-300;
+    }
+}

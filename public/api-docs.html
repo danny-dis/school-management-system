@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zophlic School Management System API Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/github.min.css">
+    <style>
+        body {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+        .endpoint {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border-radius: 0.25rem;
+            background-color: #f8f9fa;
+        }
+        .method {
+            font-weight: bold;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+        .method-get {
+            background-color: #61affe;
+            color: white;
+        }
+        .method-post {
+            background-color: #49cc90;
+            color: white;
+        }
+        .method-put {
+            background-color: #fca130;
+            color: white;
+        }
+        .method-delete {
+            background-color: #f93e3e;
+            color: white;
+        }
+        .path {
+            font-family: monospace;
+            font-size: 1.1rem;
+        }
+        .response-example {
+            margin-top: 1rem;
+        }
+        .nav-pills .nav-link.active {
+            background-color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="mb-5">
+            <h1 class="text-center">Zophlic School Management System API</h1>
+            <p class="lead text-center">RESTful API Documentation</p>
+        </header>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="sticky-top pt-3">
+                    <ul class="nav flex-column nav-pills">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#authentication">Authentication</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#students">Students</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#teachers">Teachers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#classes">Classes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#sections">Sections</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#subjects">Subjects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#exams">Exams</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#attendance">Attendance</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#timetable">Timetable</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <section id="authentication" class="mb-5">
+                    <h2>Authentication</h2>
+                    <p>The API uses token-based authentication. To authenticate, send a POST request to the login endpoint with your credentials.</p>
+                    
+                    <div class="endpoint">
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="method method-post">POST</span>
+                            <span class="path">/api/login</span>
+                        </div>
+                        <h5>Request Body</h5>
+                        <pre><code class="language-json">{
+  "username": "your_username",
+  "password": "your_password"
+}</code></pre>
+                        <h5 class="mt-3">Response</h5>
+                        <pre><code class="language-json">{
+  "success": true,
+  "message": "Login successful",
+  "data": {
+    "token": "your_token_here",
+    "user": {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@example.com",
+      "role": "Admin"
+    }
+  }
+}</code></pre>
+                        <p class="mt-3">Include the token in the Authorization header of subsequent requests:</p>
+                        <pre><code>Authorization: Bearer your_token_here</code></pre>
+                    </div>
+                </section>
+
+                <section id="students" class="mb-5">
+                    <h2>Students</h2>
+                    
+                    <div class="endpoint">
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="method method-get">GET</span>
+                            <span class="path">/api/admin/students</span>
+                        </div>
+                        <p>Get a list of all students with pagination.</p>
+                        <h5>Query Parameters</h5>
+                        <ul>
+                            <li><code>page</code> - Page number (default: 1)</li>
+                            <li><code>per_page</code> - Items per page (default: 15)</li>
+                            <li><code>name</code> - Filter by name</li>
+                            <li><code>class_id</code> - Filter by class ID</li>
+                            <li><code>section_id</code> - Filter by section ID</li>
+                            <li><code>status</code> - Filter by status (0 or 1)</li>
+                        </ul>
+                        <h5 class="mt-3">Response</h5>
+                        <pre><code class="language-json">{
+  "success": true,
+  "message": "Students retrieved successfully",
+  "data": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@example.com",
+      "phone_no": "1234567890",
+      "gender": 1,
+      "dob": "2005-01-15",
+      "class": {
+        "id": 1,
+        "name": "Class 10"
+      },
+      "section": {
+        "id": 1,
+        "name": "Section A"
+      }
+    },
+    // More students...
+  ],
+  "meta": {
+    "total": 50,
+    "count": 15,
+    "per_page": 15,
+    "current_page": 1,
+    "total_pages": 4,
+    "links": {
+      "first": "http://example.com/api/admin/students?page=1",
+      "last": "http://example.com/api/admin/students?page=4",
+      "prev": null,
+      "next": "http://example.com/api/admin/students?page=2"
+    }
+  }
+}</code></pre>
+                    </div>
+
+                    <div class="endpoint">
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="method method-get">GET</span>
+                            <span class="path">/api/admin/students/{id}</span>
+                        </div>
+                        <p>Get a specific student by ID.</p>
+                        <h5 class="mt-3">Response</h5>
+                        <pre><code class="language-json">{
+  "success": true,
+  "message": "Student retrieved successfully",
+  "data": {
+    "id": 1,
+    "name": "John Doe",
+    "email": "john@example.com",
+    "phone_no": "1234567890",
+    "gender": 1,
+    "dob": "2005-01-15",
+    "religion": 1,
+    "blood_group": 1,
+    "nationality": "American",
+    "photo": "students/john-doe.jpg",
+    "father_name": "Robert Doe",
+    "father_phone_no": "9876543210",
+    "mother_name": "Jane Doe",
+    "mother_phone_no": "9876543211",
+    "present_address": "123 Main St, City",
+    "permanent_address": "123 Main St, City",
+    "status": 1,
+    "created_at": "2023-01-15T10:00:00.000000Z",
+    "updated_at": "2023-01-15T10:00:00.000000Z",
+    "class": {
+      "id": 1,
+      "name": "Class 10"
+    },
+    "section": {
+      "id": 1,
+      "name": "Section A"
+    }
+  }
+}</code></pre>
+                    </div>
+
+                    <div class="endpoint">
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="method method-post">POST</span>
+                            <span class="path">/api/admin/students</span>
+                        </div>
+                        <p>Create a new student.</p>
+                        <h5>Request Body</h5>
+                        <pre><code class="language-json">{
+  "name": "Jane Smith",
+  "email": "jane@example.com",
+  "phone_no": "1234567890",
+  "dob": "2006-05-20",
+  "gender": 2,
+  "religion": 1,
+  "blood_group": 1,
+  "nationality": "American",
+  "father_name": "Robert Smith",
+  "father_phone_no": "9876543210",
+  "mother_name": "Mary Smith",
+  "mother_phone_no": "9876543211",
+  "present_address": "456 Oak St, City",
+  "permanent_address": "456 Oak St, City",
+  "status": 1,
+  "username": "jane.smith",
+  "password": "password123"
+}</code></pre>
+                        <h5 class="mt-3">Response</h5>
+                        <pre><code class="language-json">{
+  "success": true,
+  "message": "Student created successfully",
+  "data": {
+    "id": 2,
+    "name": "Jane Smith",
+    "email": "jane@example.com",
+    // Other student details...
+  }
+}</code></pre>
+                    </div>
+
+                    <div class="endpoint">
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="method method-put">PUT</span>
+                            <span class="path">/api/admin/students/{id}</span>
+                        </div>
+                        <p>Update an existing student.</p>
+                        <h5>Request Body</h5>
+                        <pre><code class="language-json">{
+  "name": "Jane Smith",
+  "phone_no": "1234567891",
+  "present_address": "789 Pine St, City"
+}</code></pre>
+                        <h5 class="mt-3">Response</h5>
+                        <pre><code class="language-json">{
+  "success": true,
+  "message": "Student updated successfully",
+  "data": {
+    "id": 2,
+    "name": "Jane Smith",
+    "phone_no": "1234567891",
+    "present_address": "789 Pine St, City",
+    // Other student details...
+  }
+}</code></pre>
+                    </div>
+
+                    <div class="endpoint">
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="method method-delete">DELETE</span>
+                            <span class="path">/api/admin/students/{id}</span>
+                        </div>
+                        <p>Delete a student.</p>
+                        <h5 class="mt-3">Response</h5>
+                        <pre><code class="language-json">{
+  "success": true,
+  "message": "Student deleted successfully",
+  "data": null
+}</code></pre>
+                    </div>
+
+                    <div class="endpoint">
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="method method-get">GET</span>
+                            <span class="path">/api/admin/students/class/{classId}</span>
+                        </div>
+                        <p>Get all students in a specific class.</p>
+                        <h5 class="mt-3">Response</h5>
+                        <pre><code class="language-json">{
+  "success": true,
+  "message": "Students retrieved successfully",
+  "data": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      // Other student details...
+    },
+    // More students...
+  ]
+}</code></pre>
+                    </div>
+
+                    <div class="endpoint">
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="method method-get">GET</span>
+                            <span class="path">/api/admin/students/section/{sectionId}</span>
+                        </div>
+                        <p>Get all students in a specific section.</p>
+                        <h5 class="mt-3">Response</h5>
+                        <pre><code class="language-json">{
+  "success": true,
+  "message": "Students retrieved successfully",
+  "data": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      // Other student details...
+    },
+    // More students...
+  ]
+}</code></pre>
+                    </div>
+                </section>
+
+                <!-- More sections for other endpoints... -->
+                
+                <section id="teachers" class="mb-5">
+                    <h2>Teachers</h2>
+                    <p>Documentation for teacher endpoints will be added soon.</p>
+                </section>
+                
+                <section id="classes" class="mb-5">
+                    <h2>Classes</h2>
+                    <p>Documentation for class endpoints will be added soon.</p>
+                </section>
+                
+                <section id="sections" class="mb-5">
+                    <h2>Sections</h2>
+                    <p>Documentation for section endpoints will be added soon.</p>
+                </section>
+                
+                <section id="subjects" class="mb-5">
+                    <h2>Subjects</h2>
+                    <p>Documentation for subject endpoints will be added soon.</p>
+                </section>
+                
+                <section id="exams" class="mb-5">
+                    <h2>Exams</h2>
+                    <p>Documentation for exam endpoints will be added soon.</p>
+                </section>
+                
+                <section id="attendance" class="mb-5">
+                    <h2>Attendance</h2>
+                    <p>Documentation for attendance endpoints will be added soon.</p>
+                </section>
+                
+                <section id="timetable" class="mb-5">
+                    <h2>Timetable</h2>
+                    <p>Documentation for timetable endpoints will be added soon.</p>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('pre code').forEach((el) => {
+                hljs.highlightElement(el);
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+            
+            // Update active nav link on scroll
+            window.addEventListener('scroll', () => {
+                let current = '';
+                
+                document.querySelectorAll('section').forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

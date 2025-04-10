@@ -27,6 +27,9 @@
     <!-- print CSS -->
     <link href="{{ asset(mix('/css/print.css')) }}" rel="stylesheet" type="text/css">
 
+    <!-- notifications CSS -->
+    <link href="{{ asset('/css/notifications.css') }}" rel="stylesheet" type="text/css">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -106,6 +109,9 @@
 <script src="{{ asset(mix('/js/theme.js')) }}"></script>
 <!-- app js -->
 <script src="{{ asset(mix('/js/app.js')) }}"></script>
+
+<!-- Notifications js -->
+<script src="{{ asset('/js/notifications.js') }}"></script>
 
 <!-- Extra js from child page -->
 @yield("extraScript")

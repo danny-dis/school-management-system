@@ -43,6 +43,7 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             'bindings',
+            'api.response',
         ],
         'frontend' => [
             \App\Http\Middleware\Frontend::class,
@@ -68,9 +69,12 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'role' => \App\Http\Middleware\RoleMiddleware::class,
         'permission' => \App\Http\Middleware\PermissionMiddleware::class,
+        'module.enabled' => \App\Http\Middleware\ModuleEnabled::class,
+        'module.licensed' => \App\Http\Middleware\ModuleLicensed::class,
         'api.role' => \App\Http\Middleware\CheckUserRole::class,
         'student' => \App\Http\Middleware\StudentMiddleware::class,
         'parent' => \App\Http\Middleware\ParentMiddleware::class,
         'module' => \App\Http\Middleware\ModuleEnabled::class,
+        'api.response' => \App\Http\Middleware\ApiResponseMiddleware::class,
     ];
 }

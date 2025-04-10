@@ -2,11 +2,13 @@
 
 namespace App\Exceptions;
 
+use App\Exceptions\Api\ApiException;
 use App\Http\Helpers\AppHelper;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\ValidationException;
 
 
 
@@ -51,43 +53,70 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // Handle API exceptions
+        if ($exception instanceof ApiException) {
+            return $exception->render();
+        }
 
-            if (method_exists($exception, 'getStatusCode')) {
+        // Handle validation exceptions for API requests
+        if ($exception instanceof ValidationException && $request->expectsJson()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'data' => ['errors' => $exception->errors()]
+            ], 422);
+        }
 
-                $statusCode = $exception->getStatusCode();
+        // Handle other exceptions with status codes
+        if (method_exists($exception, 'getStatusCode')) {
+            $statusCode = $exception->getStatusCode();
 
-                if(!env('APP_DEBUG', false)) {
-                    if (!$request->user() && AppHelper::isFrontendEnabled()) {
-                        $locale = Session::get('user_locale');
-                        App::setLocale($locale);
-
-                        if ($statusCode == 404) {
-                            return response()->view('errors.front_404', [], 404);
-                        }
-
-                        if ($statusCode == 500) {
-
-                            return response()->view('errors.front_500', [], 500);
-                        }
-
-                    }
-                }
-
-                if ($request->user()) {
-                    if ($statusCode == 404) {
-                        return response()->view('errors.back_404', [], 404);
-                    }
-
-                    if ($statusCode == 401) {
-                        return response()->view('errors.back_401', [], 404);
-                    }
-                }
-
-
-
+            // API responses for requests expecting JSON
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => $exception->getMessage() ?: 'Server Error',
+                    'data' => null
+                ], $statusCode);
             }
 
+            // Web responses
+            if(!env('APP_DEBUG', false)) {
+                if (!$request->user() && AppHelper::isFrontendEnabled()) {
+                    $locale = Session::get('user_locale');
+                    App::setLocale($locale);
 
+                    if ($statusCode == 404) {
+                        return response()->view('errors.front_404', [], 404);
+                    }
+
+                    if ($statusCode == 500) {
+                        return response()->view('errors.front_500', [], 500);
+                    }
+                }
+            }
+
+            if ($request->user()) {
+                if ($statusCode == 404) {
+                    return response()->view('errors.back_404', [], 404);
+                }
+
+                if ($statusCode == 401) {
+                    return response()->view('errors.back_401', [], 401);
+                }
+            }
+        }
+
+        // Handle other exceptions for API requests
+        if ($request->expectsJson()) {
+            $statusCode = method_exists($exception, 'getStatusCode') ? $exception->getStatusCode() : 500;
+
+            return response()->json([
+                'success' => false,
+                'message' => $exception->getMessage() ?: 'Server Error',
+                'data' => null
+            ], $statusCode);
+        }
 
         return parent::render($request, $exception);
     }
