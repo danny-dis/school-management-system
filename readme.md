@@ -6,17 +6,15 @@
 [![laravel](https://img.shields.io/badge/laravel-6.x-orange.svg?logo=laravel)](https://laravel.com)
 
 ```
-                       _____  _                    _   _____        _                    _ 
+                       _____  _                    _   _____        _                    _
                       / ____|| |                  | | / ____|      | |                  | |
                      | |     | |  ___   _   _   __| || (___    ___ | |__    ___    ___  | |
                      | |     | | / _ \ | | | | / _` | \___ \  / __|| '_ \  / _ \  / _ \ | |
                      | |____ | || (_) || |_| || (_| | ____) || (__ | | | || (_) || (_) || |
-                      \_____||_| \___/  \__,_| \__,_||_____/  \___||_| |_| \___/  \___/ |_|       
-```                                                                                                                               
+                      \_____||_| \___/  \__,_| \__,_||_____/  \___||_| |_| \___/  \___/ |_|
+```
 
-Another School Management System build with Laravel and PHP 7
-
-## :loudspeaker: **For Enterprise Edition(EE) checkout [here](https://github.com/hrshadhin/school-management-system/tree/empty)**
+A comprehensive, modular School Management System built with Laravel and PHP 7
 
 ## Index
 
@@ -37,81 +35,193 @@ Another School Management System build with Laravel and PHP 7
 - [Issues](#issues)
 - [License](#license)
 
-## Have a query
+## Differences from Original Project
 
 [:arrow_up: Back to top](#index)
 
-:mega: Join our discord channel: [CloudSchool](https://discord.gg/7rXyuu8):mega:
+This enhanced version by Zophlic includes several improvements over the original project:
 
-:mega: Send us an email: [info@cloudschoolbd.com](mailto:info@cloudschoolbd.com):mega:
+1. **Additional Modules**: We've added several enterprise-grade modules including:
+   - Online Learning
+   - Fee Management
+   - Library Management
+   - Mobile App Integration
+   - Advanced Reporting
+   - Communication System
+   - Timetable Management
+   - Transportation Management
+   - Health Records Management
 
-## Demo
+2. **Enhanced User Experience**:
+   - Improved UI/UX design
+   - More intuitive navigation
+   - Responsive design for all devices
+   - Dark mode support
 
-[:arrow_up: Back to top](#index)
+3. **Performance Optimizations**:
+   - Improved database queries
+   - Caching mechanisms
+   - Reduced load times
+   - Better resource utilization
 
-#### Enterprise Edition
+4. **Security Enhancements**:
+   - Advanced permission system
+   - Improved data validation
+   - Enhanced encryption
+   - Regular security updates
 
-- Website: [http://demo.cloudschoolbd.com](http://demo.cloudschoolbd.com)
-- App login: [http://demo.cloudschoolbd.com/login](http://demo.cloudschoolbd.com/login)
+5. **Comprehensive Documentation**:
+   - Detailed user guides
+   - API documentation
+   - Developer documentation
+   - Video tutorials
 
-  | Username   | Password |
-  | ---------- | :------- |
-  | superadmin | super99  |
-  | admin      | demo123  |
+6. **Licensing System**:
+   - Module-based licensing
+   - Subscription management
+   - License validation
 
 ## Features
 
 [:arrow_up: Back to top](#index)
 
-| Community Edition                            |              Enterprise Edition              |
-| -------------------------------------------- | :------------------------------------------: |
-| Academic Year manage                         |             Academic Year manage             |
-| Academic Calendar Setup                      |           Academic Calendar Setup            |
-| Institute Setup                              |               Institute Setup                |
-| Class & Section Manage                       |            Class & Section Manage            |
-| Subject & Teacher Manage                     |           Subject & Teacher Manage           |
-| Student Admission                            |              Student Admission               |
-| Student Attendance                           |              Student Attendance              |
-| Exam & Grading Rules                         |             Exam & Grading Rules             |
-| Marks & Result                               |       Easy Marks Entry & Result Manage       |
-| Student Promotion                            |  Dynamic and more advance Student Promotion  |
-| Employees Manage                             |               Employees Manage               |
-| Employees Attendance                         |             Employees Attendance             |
-| Employees Leave                              |               Employees Leave                |
-|                                              |            Employees Work Outside            |
-|                                              |              SMS Gateway Setup               |
-|                                              |            Email & SMS Templating            |
-|                                              |      Attendance notification email/sms       |
-|                                              |           Id Card templates Manage           |
-|                                              |       Employee & Student id card print       |
-| User & Role manage with permission grid(ACL) | User & Role manage with permission grid(ACL) |
-| User wise Dashboard                          |             User wise Dashboard              |
-| Report Settings                              |               Report Settings                |
-| Only 5 Reports                               |               **40+** Reports                |
-| Dynamic Front Website                        |            Dynamic Front Website             |
-| Website Management Panel                     |           Website Management Panel           |
-| Photo Gallery                                |                Photo Gallery                 |
-| Event Manage                                 |                 Event Manage                 |
-| Google Analytics                             |               Google Analytics               |
-| User Notification                            |              User Notification               |
-|                                              |               Online Admission               |
-|                                              |         Online Admit Card & Payslip          |
-|                                              |                 Notice Board                 |
-|                                              |  Student & Employee Id card bulk/mass print  |
-|                                              |                Account Manage                |
-|                                              |                Budget Manage                 |
-|                                              |                Account Heads                 |
-|                                              |               Student Invoice                |
-|                                              |           Income / Expense Manage            |
-|                                              |                   Payroll                    |
-|                                              |               Salary Template                |
-|                                              |           Employee Salary Payment            |
-|                                              |          Hostel & Collection Manage          |
-|                                              |                Library Manage                |
-|                                              |        Issue book and fine collection        |
-|                                              |           Academic Calendar Print            |
-|                                              |          Bulk SMS and Email Sending          |
-|                                              |               **40+** Reports                |
+### Modular Architecture
+The system features a modular architecture that allows you to enable or disable specific features based on your needs. Each module provides a set of related features that can be managed independently through the Module Management interface.
+
+### Available Features
+
+#### Core Features
+- Academic Year Management
+- Academic Calendar Setup
+- Institute Setup
+- Class & Section Management
+- Subject & Teacher Management
+- Student Admission
+- Student Attendance
+- Exam & Grading Rules
+- Marks & Result Management
+- Student Promotion
+- Employees Management
+- Employees Attendance
+- Employees Leave
+- User & Role Management with Permission Grid (ACL)
+- User-wise Dashboard
+- Report Settings
+- Reports
+
+#### Student Portal Module
+- Personal Dashboard for Students
+- Attendance Records
+- Grades and Results
+- Subject Information
+- Profile Management
+
+#### Parent Portal Module
+- Dashboard for Parents
+- Children's Academic Progress
+- Attendance Monitoring
+- Grade Viewing
+- Profile Management
+
+#### Online Learning Module
+- Course Content Management
+- Assignment Submission
+- Online Classes
+- Learning Resources
+
+#### Employees Management Module
+- Comprehensive Employee Management
+- Work Outside Tracking
+- Leave Management
+- Performance Monitoring
+
+#### SMS and Email Module
+- SMS Gateway Setup
+- Email & SMS Templating
+- Attendance Notifications
+- Custom Notification Templates
+
+#### ID Card Management Module
+- ID Card Templates
+- Employee & Student ID Card Printing
+- Bulk/Mass ID Card Printing
+
+#### Online Admission Module
+- Online Student Applications
+- Application Processing
+- Admission Status Tracking
+
+#### Online Documents Module
+- Online Admit Cards
+- Online Payslips
+- Document Management
+
+#### Notice Board Module
+- School Announcements
+- Important Notifications
+- Event Announcements
+
+#### Accounting Module
+- Account Management
+- Budget Management
+- Account Heads
+- Income/Expense Tracking
+
+#### Student Billing Module
+- Student Invoice Generation
+- Fee Management
+- Payment Tracking
+
+#### Payroll Module
+- Salary Templates
+- Employee Salary Payment
+- Payroll Processing
+
+#### Hostel Management Module
+- Hostel Administration
+- Room Allocation
+- Collection Management
+
+#### Library Management Module
+- Book Inventory
+- Book Issuing
+- Fine Collection
+- Library Reports
+
+#### Academic Calendar Module
+- Calendar Management
+- Event Scheduling
+- Calendar Printing
+
+#### Bulk Communication Module
+- Bulk SMS Sending
+- Bulk Email Sending
+- Targeted Communications
+
+#### Advanced Reporting Module
+- Enhanced Reports
+- Data Visualization
+- Custom Report Generation
+
+#### Website Management Module
+- Dynamic Front Website
+- Content Management
+- Website Administration
+
+#### Photo Gallery Module
+- School Photo Management
+- Gallery Organization
+- Image Uploads
+
+#### Event Management Module
+- School Event Planning
+- Event Calendar
+- Event Notifications
+
+#### Analytics Module
+- Google Analytics Integration
+- Website Traffic Analysis
+- User Behavior Tracking
 
 ## Installation
 
@@ -143,12 +253,12 @@ Another School Management System build with Laravel and PHP 7
   ```
 
   ```
-  $ git clone https://github.com/hrshadhin/school-management-system.git cloudschool
+  $ git clone https://github.com/danny-dis/school-management-system.git school-system
   ```
 
 - change directory
   ```
-  $ cd cloudschool
+  $ cd school-system
   ```
 - Copy sample `env` file and change configuration according to your need in ".env" file and create Database
   ```
@@ -159,18 +269,14 @@ Another School Management System build with Laravel and PHP 7
   $ composer install
   ```
 - Setup application
- - Setup application 
-- Setup application
- - Setup application 
-- Setup application
 
   - Method 1: By one command
 
     ```
-    # setup cloudschool with out demo data
+    # setup system with out demo data
     $ php artisan fresh-install
 
-    # setup cloudschool with demo data
+    # setup system with demo data
     $ php artisan fresh-install --with-data
      # OR
     $ php artisan fresh-install -d
@@ -185,6 +291,9 @@ Another School Management System build with Laravel and PHP 7
     # Create database tables and load essential data
     $ php artisan migrate
     $ php artisan db:seed
+
+    # Load module permissions
+    $ php artisan db:seed --class ModulePermissionSeeder
 
     # Load demo data
     $ php artisan db:seed --class DemoSiteDataSeeder
@@ -220,11 +329,23 @@ Another School Management System build with Laravel and PHP 7
   | superadmin | super99  |
   | admin      | demo123  |
 
+### Module Management
+
+To enable or disable modules:
+1. Login as superadmin
+2. Go to Module Management from the sidebar
+3. Enable or disable modules as needed
+
+Note: Some modules have dependencies on other modules. You cannot enable a module if its dependencies are not enabled, and you cannot disable a module if other enabled modules depend on it.
+
 ## Documentation
 
 [:arrow_up: Back to top](#index)
 
-- [http://ug.cloudschoolbd.com](http://ug.cloudschoolbd.com)
+- Comprehensive documentation is available in the `/docs` directory
+- User guides for each module are provided
+- API documentation for developers
+- Installation and configuration guides
 
 ## Timeline
 
@@ -292,3 +413,4 @@ All Frameworks and libraries are distributed with it's own license.
 not remove application footer information text**
 
 **Why AGPL? [Read Here](https://www.gnu.org/licenses/why-affero-gpl.html)**
+

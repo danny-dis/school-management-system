@@ -129,11 +129,28 @@
         @endif
         @if($userRoleId == AppHelper::USER_STUDENT)
             <div class="row">
-                <div class="col-md-3 col-md-offset-4">
-                <div class="callout callout-success text-center">
-                    <h3>Welcome to CloudSchool</h3>
-                    <p>Lot's of things are coming soon...</p>
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="callout callout-success text-center">
+                        <h3>Welcome to CloudSchool Student Portal</h3>
+                        <p>Access your personal dashboard to view attendance, grades, and more.</p>
+                        <a href="{{ route('student.portal.dashboard') }}" class="btn btn-success btn-lg">
+                            <i class="fa fa-dashboard"></i> Go to Student Portal
+                        </a>
+                    </div>
                 </div>
+            </div>
+        @endif
+
+        @if($userRoleId == AppHelper::USER_PARENTS)
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="callout callout-info text-center">
+                        <h3>Welcome to CloudSchool Parent Portal</h3>
+                        <p>Access your personal dashboard to monitor your children's progress.</p>
+                        <a href="{{ route('parent.portal.dashboard') }}" class="btn btn-info btn-lg">
+                            <i class="fa fa-dashboard"></i> Go to Parent Portal
+                        </a>
+                    </div>
                 </div>
             </div>
         @endif

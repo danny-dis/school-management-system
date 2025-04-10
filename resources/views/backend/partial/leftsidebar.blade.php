@@ -420,6 +420,13 @@
                             </a>
                         </li>
                    @endcan
+                   @can('modules.index')
+                        <li>
+                            <a href="{{ URL::route('modules.index') }}">
+                                <i class="fa fa-puzzle-piece"></i> <span>Module Management</span>
+                            </a>
+                        </li>
+                   @endcan
                    @can('settings.report')
                        <li>
                            <a href="{{ URL::route('settings.report') }}">
