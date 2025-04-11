@@ -22,7 +22,7 @@ class StudentController extends BaseFrontendApiController
      */
     public function __construct(StudentService $studentService)
     {
-        $this->middleware('auth:api');
+        $this->middleware('auth:sanctum');
         $this->studentService = $studentService;
     }
 
